@@ -1,0 +1,33 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "main.cpp",
+                "src/Game.cpp",
+                "src/TextureManager.cpp",
+                "src/GameObject.cpp",
+                "src/Game_Map.cpp",
+                "src/Vector2D.cpp",
+                "src/Collision.cpp",
+                "src/ECS.cpp",
+                "-o",
+                "Builds/Win_Build/engine",
+                "-lmingw32",
+                "-lSDL2",
+                "-lSDL2_image",
+                //"-lSDL2main",
+                "-I${workspaceFolder}\\include",
+                "-I${workspaceFolder}\\include\\ECS",
+                "-I${workspaceFolder}\\src"
+            ],
+            "problemMatcher": "$gcc"
+        }
+    ]
+}

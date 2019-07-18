@@ -10,22 +10,21 @@
             "args": [
                 "-g",
                 "main.cpp",
-                "src/Game.cpp",
-                "src/TextureManager.cpp",
-                "src/GameObject.cpp",
-                "src/Game_Map.cpp",
-                "src/Vector2D.cpp",
-                "src/Collision.cpp",
-                "src/ECS.cpp",
+                "source/Game.cpp",
+                "source/TextureManager.cpp",
+                "source/Game_Map.cpp",
+                "source/Vector2D.cpp",
+                "source/Collision.cpp",
+                "source/ECS.cpp",
                 "-o",
-                "Builds/Win_Build/engine",
+                "builds/win_build/engine",
                 "-lmingw32",
                 "-lSDL2",
                 "-lSDL2_image",
                 //"-lSDL2main",
                 "-I${workspaceFolder}\\include",
                 "-I${workspaceFolder}\\include\\ECS",
-                "-I${workspaceFolder}\\src"
+                "-I${workspaceFolder}\\source"
             ],
             "problemMatcher": "$gcc"
         }

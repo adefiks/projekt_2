@@ -72,7 +72,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
     player.addComponent<TransformComponent>(400, 320, 64, 64, 2);
     player.addComponent<SpriteComponent>("assets/goblin.png", true);
-    player.addComponent<KeyboardController>();
+    player.addComponent<KeyboardComponent>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayer);
 }

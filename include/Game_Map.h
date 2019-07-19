@@ -32,6 +32,9 @@ public:
     // loading map from txt file, x,y -> size of map in tiles
     void LoadMap(string path, int x, int y);
 
+    // loading colliders for game map, x,y -> size of map in tiles
+    void LoadMap_colliders(string path, int x, int y);
+
     // adding tiles to map
     void AddTitle(int src_x, int src_y, int x, int y);
 };

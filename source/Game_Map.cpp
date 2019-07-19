@@ -56,7 +56,54 @@ void Game_Map::LoadMap(string path, int x, int y)
             mapFile.ignore();
         }
     }
+    mapFile.close();
+}
 
+void Game_Map::LoadMap_colliders(string path, int x, int y)
+{
+    char tile;
+    fstream mapFile;
+    mapFile.open(path);
+
+    int src_x, src_y;
+
+    string title_tag = "clear";
+
+    for (int i = 0; i < y; i++)
+    {
+        for (int j = 0; j < x; j++)
+        {
+            mapFile.get(tile);
+            src_y = atoi(&tile) * tile_size;
+            mapFile.get(tile);
+            src_x = (atoi(&tile) - 1) * tile_size;
+
+            switch (atoi(&tile))
+            {
+            case 0:
+                title_tag = "clear";
+                break;
+            case 2:
+                title_tag = "platform";
+                break;
+            case 3:
+                title_tag = "water";
+                break;
+            default:
+                title_tag = "water";
+                break;
+            }
+            if (title_tag != "clear")
+            {
+                auto &tile_collider(manager.addEntity());
+                tile_collider.addComponent<ColliderComponent>(title_tag, j * (tile_size * map_scale), i * (tile_size * map_scale), (tile_size * map_scale));
+                tile_collider.addGroup(Game::groupCollider);
+                tile_collider.delGroup(Game::groupMap); // TODO ?? not sure if needed
+            }
+
+            mapFile.ignore();
+        }
+    }
     mapFile.close();
 }
 

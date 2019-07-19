@@ -67,8 +67,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    game_map = new Game_Map("assets/tiles.png", 2, 32);
-    game_map->LoadMap("assets/map2.map", 25, 20);
+    game_map = new Game_Map("assets/tiles.png", 1, 32);
+    game_map->LoadMap("assets/map2.map", (Game::resolution_width / 32), (Game::resolution_width / 32));
 
     stone.addComponent<TransformComponent>(140, 320, 32, 32, 4);
     stone.addComponent<SpriteComponent>("assets/large_rock.png");

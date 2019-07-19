@@ -17,6 +17,8 @@ Manager manager;
 
 // size of camera, same as window
 SDL_Rect Game::camera = {0, 0, 800, 640};
+int Game::resolution_width = 1024;
+int Game::resolution_height = 768;
 
 // player entity
 auto &player(manager.addEntity());
@@ -34,6 +36,10 @@ Game::~Game()
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+    Game::resolution_width = width;
+    Game::resolution_height = height;
+    Game::camera = {0, 0, width, height}; // update the camera with game resolution
+
     int flags = 0;
     if (fullscreen)
     {
@@ -70,7 +76,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     stone.addGroup(groupMap);
     stone.addGroup(groupCollider);
 
-    player.addComponent<TransformComponent>(400, 320, 64, 64, 2);
+    player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 2);
     player.addComponent<SpriteComponent>("assets/goblin.png", true);
     player.addComponent<KeyboardComponent>();
     player.addComponent<ColliderComponent>("player");
@@ -120,8 +126,8 @@ void Game::update()
     cout << " Player speed: " << player.getComponent<TransformComponent>().speed << endl;
 
     player.getComponent<TransformComponent>().speed;
-    camera.x = player.getComponent<TransformComponent>().position.x - 400;
-    camera.y = player.getComponent<TransformComponent>().position.y - 320;
+    camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
+    camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);
 
     if (camera.x < 0)
         camera.x = 0;

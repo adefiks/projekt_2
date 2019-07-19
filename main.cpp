@@ -13,7 +13,7 @@ int WinMain(int argc, char *argv[])
     // Game object
     Game game;
 
-    game.init("2D platform game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
+    game.init("2D platform game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 768, false);
 
     while (game.running())
     {
@@ -32,9 +32,6 @@ int WinMain(int argc, char *argv[])
     }
 
     game.clean();
-
-    int x;
-    cin >> x;
 
     return 0;
 }

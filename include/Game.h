@@ -53,6 +53,10 @@ public:
   // position for camera
   static SDL_Rect camera;
 
+  // Resolution
+  static int resolution_width;
+  static int resolution_height;
+
   // grouping for objects
   enum groupLabels : size_t
   {

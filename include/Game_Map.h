@@ -36,5 +36,5 @@ public:
     void LoadMap_colliders(string path, int x, int y);
 
     // adding tiles to map
-    void AddTitle(int src_x, int src_y, int x, int y);
+    void AddTitle(int tile_int, int x, int y);
 };

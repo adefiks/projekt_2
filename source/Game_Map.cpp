@@ -16,44 +16,29 @@ void Game_Map::LoadMap(string path, int x, int y)
     mapFile.open(path);
 
     int src_x, src_y;
-
-    string title_tag = "water";
+    int tile_int = 0;
+    string tile_string;
+    int multiplier = 1;
 
     for (int i = 0; i < y; i++)
     {
         for (int j = 0; j < x; j++)
         {
-            mapFile.get(tile);
-            src_y = atoi(&tile) * tile_size;
-            mapFile.get(tile);
-            src_x = (atoi(&tile) - 1) * tile_size;
-
-            switch (atoi(&tile))
+            tile_string.clear();
+            do
             {
-            case 1:
-                title_tag = "dirt";
-                break;
-            case 2:
-                title_tag = "grass";
-                break;
-            case 3:
-                title_tag = "water";
-                break;
-            default:
-                title_tag = "water";
-                break;
-            }
+                mapFile.get(tile);
+                if (tile != ',')
+                    tile_string += tile;
 
-            // if (atoi(&tile) == 3)
-            // {
-            auto &tile_collider(manager.addEntity());
-            tile_collider.addComponent<ColliderComponent>(title_tag, j * (tile_size * map_scale), i * (tile_size * map_scale), (tile_size * map_scale));
-            tile_collider.addGroup(Game::groupCollider);
-            // }
+            } while (tile != ',');
 
-            AddTitle(src_x, src_y, j * (tile_size * map_scale), i * (tile_size * map_scale));
+            tile_int = atoi(tile_string.c_str());
 
-            mapFile.ignore();
+            AddTitle(tile_int, j * (tile_size * map_scale), i * (tile_size * map_scale));
+
+            if (j == (x - 1))
+                mapFile.ignore();
         }
     }
     mapFile.close();
@@ -107,9 +92,16 @@ void Game_Map::LoadMap_colliders(string path, int x, int y)
     mapFile.close();
 }
 
-void Game_Map::AddTitle(int src_x, int src_y, int x, int y)
+void Game_Map::AddTitle(int tile_int, int x, int y)
 {
+    int src_x, src_y;
     auto &tile(manager.addEntity());
+
+    int temp_int = tile_int / (Game::tilesheet_size / 32);
+    src_y = temp_int * 32;
+
+    src_x = (tile_int - temp_int * (Game::tilesheet_size / 32)) * 32;
+
     tile.addComponent<TileComponent>(src_x, src_y, x, y, tile_size, map_scale, map_file);
     tile.addGroup(Game::groupMap);
 }

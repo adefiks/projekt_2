@@ -30,7 +30,7 @@ public:
     // constructor with parameters: src_x -> size x of tile, src_y -> size y of tile, x,y -> position of tile in map, tile_scale -> scaling of tile, path -> path to image of tile
     TileComponent(int src_x, int src_y, int x, int y, int tile_size, int tile_scale, const char *path)
     {
-        texture = TextureManager::LoadTexture("assets/tiles.png");
+        texture = TextureManager::LoadTexture("assets/tilesheet_complete.png");
 
         position.x = x;
         position.y = y;

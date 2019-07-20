@@ -16,15 +16,13 @@ bool Game::isRunning = false;
 Manager manager;
 
 // size of camera, same as window
-SDL_Rect Game::camera = {0, 0, 800, 640};
+SDL_Rect Game::camera = {0, 0, 1024, 768};
 int Game::resolution_width = 1024;
 int Game::resolution_height = 768;
+int Game::tilesheet_size = 1408;
 
 // player entity
 auto &player(manager.addEntity());
-
-// stone entity
-auto &stone(manager.addEntity());
 
 Game::Game()
 {
@@ -67,14 +65,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    game_map = new Game_Map("assets/tiles.png", 1, 32);
-    game_map->LoadMap("assets/map2.map", (Game::resolution_width / 32), (Game::resolution_width / 32));
-
-    stone.addComponent<TransformComponent>(140, 320, 32, 32, 4);
-    stone.addComponent<SpriteComponent>("assets/large_rock.png");
-    stone.addComponent<ColliderComponent>("stone");
-    stone.addGroup(groupMap);
-    stone.addGroup(groupCollider);
+    game_map = new Game_Map("assets/tilesheet_complete.png", 1, 32);
+    game_map->LoadMap("assets/map2.map", (4096 / 32), (Game::resolution_height / 32));
 
     player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 2);
     player.addComponent<SpriteComponent>("assets/goblin.png", true);

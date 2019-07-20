@@ -56,6 +56,7 @@ public:
   // Resolution
   static int resolution_width;
   static int resolution_height;
+  static int tilesheet_size;
 
   // grouping for objects
   enum groupLabels : size_t

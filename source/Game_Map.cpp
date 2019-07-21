@@ -35,8 +35,13 @@ void Game_Map::LoadMap(string path, int x, int y)
 
             tile_int = atoi(tile_string.c_str());
 
-            AddTitle(tile_int, j * (tile_size * map_scale), i * (tile_size * map_scale));
+            if (tile_int != 0)
+            {
+                tile_int--;
+                AddTitle(tile_int, j * (tile_size * map_scale), i * (tile_size * map_scale));
+            }
 
+            
             if (j == (x - 1))
                 mapFile.ignore();
         }

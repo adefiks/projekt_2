@@ -16,9 +16,9 @@ class TileComponent : public Component
 private:
     /* data */
 public:
-    SDL_Texture *texture;       // texture of tile
-    SDL_Rect srcRect, destRect; // sorce position and destination position of tile
-    Vector2D position;          // vector 2D for tile position
+    SDL_Texture *texture = TextureManager::LoadTexture("assets/tilesheet_complete.png"); // texture of tile
+    SDL_Rect srcRect, destRect;                                                          // sorce position and destination position of tile
+    Vector2D position;                                                                   // vector 2D for tile position
 
     TileComponent() = default;
 
@@ -30,7 +30,7 @@ public:
     // constructor with parameters: src_x -> size x of tile, src_y -> size y of tile, x,y -> position of tile in map, tile_scale -> scaling of tile, path -> path to image of tile
     TileComponent(int src_x, int src_y, int x, int y, int tile_size, int tile_scale, const char *path)
     {
-        texture = TextureManager::LoadTexture("assets/tilesheet_complete.png");
+        // texture = TextureManager::LoadTexture("assets/tilesheet_complete.png");
 
         position.x = x;
         position.y = y;

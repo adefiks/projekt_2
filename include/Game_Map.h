@@ -37,4 +37,6 @@ public:
 
     // adding tiles to map
     void AddTitle(int tile_int, int x, int y);
+
+    static int licznik_tiles;
 };

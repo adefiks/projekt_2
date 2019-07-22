@@ -1,6 +1,8 @@
 
 #include "Game_Map.h"
 
+int Game_Map::licznik_tiles = 0;
+
 Game_Map::Game_Map(const char *imap_file, int imap_scale, int itile_size) : map_file(imap_file), map_scale(imap_scale), tile_size(itile_size)
 {
 }
@@ -41,7 +43,6 @@ void Game_Map::LoadMap(string path, int x, int y)
                 AddTitle(tile_int, j * (tile_size * map_scale), i * (tile_size * map_scale));
             }
 
-            
             if (j == (x - 1))
                 mapFile.ignore();
         }
@@ -106,6 +107,8 @@ void Game_Map::AddTitle(int tile_int, int x, int y)
     src_y = temp_int * 32;
 
     src_x = (tile_int - temp_int * (Game::tilesheet_size / 32)) * 32;
+
+    licznik_tiles++;
 
     tile.addComponent<TileComponent>(src_x, src_y, x, y, tile_size, map_scale, map_file);
     tile.addGroup(Game::groupMap);

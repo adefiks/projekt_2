@@ -66,7 +66,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     }
 
     game_map = new Game_Map("assets/tilesheet_complete.png", 1, 32);
-    game_map->LoadMap("assets/map2.map", (4096 / 32), (Game::resolution_height / 32));
+    game_map->LoadMap("assets/mapa.map", (4096 / 32), (Game::resolution_height / 32));
+
+    cout << "licznik tiles: " << game_map->licznik_tiles << endl;
 
     player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 2);
     player.addComponent<SpriteComponent>("assets/goblin.png", true);
@@ -115,9 +117,6 @@ void Game::update()
         }
     }
 
-    cout << " Player speed: " << player.getComponent<TransformComponent>().speed << endl;
-
-    player.getComponent<TransformComponent>().speed;
     camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
     camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);
 
@@ -126,7 +125,7 @@ void Game::update()
 
     if (camera.y < 0)
         camera.y = 0;
-    if (camera.x > camera.w)
+    if (camera.x > camera.w * 4)
         camera.x = camera.w;
     if (camera.y > camera.h)
         camera.y = camera.h;
@@ -136,10 +135,15 @@ void Game::render()
 {
     SDL_RenderClear(renderer);
     // stuff to render
+    //cout << " camera.x " << camera.x << endl;
 
     for (auto &t : tiles)
     {
-        t->draw();
+        // t->getComponent<TileComponent>().destRect.x;
+        if (t->getComponent<TileComponent>().position.x + 32 >= camera.x && t->getComponent<TileComponent>().position.x < camera.x + 1056)
+        {
+            t->draw();
+        }
     }
 
     for (auto &e : enemies)

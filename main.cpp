@@ -4,7 +4,7 @@
 
 int WinMain(int argc, char *argv[])
 {
-    const int FPS = 120;
+    const int FPS = 60;
     const int frameDelay = 1000 / FPS;
 
     uint32_t frameStart;
@@ -29,6 +29,7 @@ int WinMain(int argc, char *argv[])
         {
             SDL_Delay(frameDelay - frameTime);
         }
+        // cout << frameTime << endl;
     }
 
     game.clean();

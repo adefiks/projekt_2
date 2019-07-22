@@ -25,6 +25,9 @@ private:
     // size of tiles (int his case 32x32)
     int tile_size;
 
+    // texture of tile
+    SDL_Texture *texture = TextureManager::LoadTexture("assets/tilesheet_complete.png");
+
 public:
     Game_Map(const char *imap_file, int imap_scale, int itile_size);
     ~Game_Map();

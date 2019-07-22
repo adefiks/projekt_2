@@ -110,6 +110,6 @@ void Game_Map::AddTitle(int tile_int, int x, int y)
 
     licznik_tiles++;
 
-    tile.addComponent<TileComponent>(src_x, src_y, x, y, tile_size, map_scale, map_file);
+    tile.addComponent<TileComponent>(src_x, src_y, x, y, tile_size, map_scale, texture);
     tile.addGroup(Game::groupMap);
 }

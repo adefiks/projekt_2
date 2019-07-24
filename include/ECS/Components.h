@@ -11,3 +11,4 @@
 #include "KeyboardComponent.h"
 #include "ColliderComponent.h"
 #include "TileComponent.h"
+#include "GravityComponent.h"

@@ -21,11 +21,12 @@ private:
     SDL_Rect srcRect, destRect;
 
     // bool for seting up the animeted sprites
-    bool animated = false;
+
     int frame = 0;
     int animation_speed = 100;
 
 public:
+    bool animated = false;
     int animation_index_x = 0;
     int animation_index_y = 0;
 

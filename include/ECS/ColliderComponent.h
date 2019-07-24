@@ -42,7 +42,7 @@ public:
     // update of collider
     void update() override
     {
-        if (tag != "water" && tag != "grass" && tag != "dirt")
+        if (tag != "ground" && tag != "grass" && tag != "dirt")
         {
             collider.x = static_cast<int>(transform->position.x);
             collider.y = static_cast<int>(transform->position.y);

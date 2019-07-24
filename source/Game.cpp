@@ -70,10 +70,12 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
     cout << "licznik tiles: " << game_map->licznik_tiles << endl;
 
-    player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 2);
-    player.addComponent<SpriteComponent>("assets/goblin.png", true);
-    player.addComponent<KeyboardComponent>();
+    player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 1);
+    player.addComponent<SpriteComponent>("assets/player.png");
+
     player.addComponent<ColliderComponent>("player");
+    player.addComponent<GravityComponent>();
+    player.addComponent<KeyboardComponent>();
     player.addGroup(groupPlayer);
 }
 

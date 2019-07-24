@@ -26,7 +26,7 @@ bool Collision::AABB(const ColliderComponent &object1, const ColliderComponent &
 
 void Collision::Collision_action(TransformComponent &player, const Vector2D old_player_position, string collider_tag)
 {
-    if (collider_tag == "water")
+    if (collider_tag == "ground")
     {
         player.position = old_player_position;
     }

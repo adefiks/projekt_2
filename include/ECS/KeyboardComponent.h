@@ -31,21 +31,25 @@ public:
         {
             switch (Game::event.key.keysym.sym)
             {
-            case SDLK_w:
+            case SDLK_SPACE:
                 transform->velocity.y = -1;
-                sprite->play_animation("Walk_up");
+                if (sprite->animated)
+                    sprite->play_animation("jump");
                 break;
             case SDLK_s:
                 transform->velocity.y = 1;
-                sprite->play_animation("Walk_down");
+                if (sprite->animated)
+                    sprite->play_animation("Walk_down");
                 break;
             case SDLK_a:
                 transform->velocity.x = -1;
-                sprite->play_animation("Walk_left");
+                if (sprite->animated)
+                    sprite->play_animation("Walk_left");
                 break;
             case SDLK_d:
                 transform->velocity.x = 1;
-                sprite->play_animation("Walk_right");
+                if (sprite->animated)
+                    sprite->play_animation("Walk_right");
                 break;
             case SDLK_ESCAPE:
                 Game::isRunning = false;
@@ -60,19 +64,23 @@ public:
             {
             case SDLK_w:
                 transform->velocity.y = 0;
-                sprite->play_animation("Idle");
+                if (sprite->animated)
+                    sprite->play_animation("Idle");
                 break;
             case SDLK_s:
                 transform->velocity.y = 0;
-                sprite->play_animation("Idle");
+                if (sprite->animated)
+                    sprite->play_animation("Idle");
                 break;
             case SDLK_a:
                 transform->velocity.x = 0;
-                sprite->play_animation("Idle");
+                if (sprite->animated)
+                    sprite->play_animation("Idle");
                 break;
             case SDLK_d:
                 transform->velocity.x = 0;
-                sprite->play_animation("Idle");
+                if (sprite->animated)
+                    sprite->play_animation("Idle");
                 break;
             default:
                 break;

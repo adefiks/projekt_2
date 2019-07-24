@@ -17,6 +17,6 @@ public:
 
     void update() override
     {
-        transform->velocity.y = 0.2;
+        transform->velocity.y = 2;
     }
 };

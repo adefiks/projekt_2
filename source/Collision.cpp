@@ -26,9 +26,11 @@ bool Collision::AABB(const ColliderComponent &object1, const ColliderComponent &
 
 void Collision::Collision_action(TransformComponent &player, const Vector2D old_player_position, string collider_tag)
 {
+    Vector2D vec_collision(1, -1);
     if (collider_tag == "ground")
     {
-        player.position = old_player_position;
+        player.velocity *= vec_collision;
+        // player.position = old_player_position;
     }
     else if (collider_tag == "grass")
     {

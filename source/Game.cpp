@@ -115,7 +115,6 @@ void Game::update()
         if (Collision::AABB(c_collider, player_collider))
         {
             Collision::Collision_action(player.getComponent<TransformComponent>(), player_position, cc->getComponent<ColliderComponent>().tag);
-            // player.getComponent<TransformComponent>().position = player_position;
         }
     }
 

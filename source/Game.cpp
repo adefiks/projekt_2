@@ -119,7 +119,9 @@ void Game::update()
     }
 
     camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
-    camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);
+    //camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);
+
+    cout << " player velocity y: " << player.getComponent<TransformComponent>().velocity.y << endl;
 
     if (camera.x < 0)
         camera.x = 0;

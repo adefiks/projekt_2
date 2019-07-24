@@ -29,7 +29,7 @@ void Collision::Collision_action(TransformComponent &player, const Vector2D old_
     Vector2D vec_collision(1, -1);
     if (collider_tag == "ground")
     {
-        player.velocity *= vec_collision;
+        player.velocity.y = 0;
         // player.position = old_player_position;
     }
     else if (collider_tag == "grass")

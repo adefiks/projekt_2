@@ -32,7 +32,7 @@ public:
             switch (Game::event.key.keysym.sym)
             {
             case SDLK_SPACE:
-                transform->velocity.y = -1;
+                transform->velocity.y = -2;
                 if (sprite->animated)
                     sprite->play_animation("jump");
                 break;

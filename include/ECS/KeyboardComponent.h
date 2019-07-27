@@ -36,8 +36,8 @@ public:
                 if (sprite->animated)
                     sprite->play_animation("jump");
                 break;
-            case SDLK_s:
-                transform->velocity.y = 1;
+            case SDLK_s: // duck and cover !
+                // transform->velocity.y = 1;
                 if (sprite->animated)
                     sprite->play_animation("Walk_down");
                 break;

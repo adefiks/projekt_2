@@ -9,6 +9,7 @@ private:
     /* data */
 public:
     TransformComponent *transform;
+    bool jump_active;
 
     void init() override
     {
@@ -17,6 +18,15 @@ public:
 
     void update() override
     {
-        transform->velocity.y = 1;
+        jump_active = &entity->getComponent<KeyboardComponent>().jump_active;
+
+        if (jump_active)
+        {
+            transform->velocity.y = -2;
+        }
+        else
+        {
+            transform->velocity.y = 1;
+        }
     }
 };

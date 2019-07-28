@@ -14,10 +14,15 @@
 class KeyboardComponent : public Component
 {
 private:
-    /* data */
+    // timer for space key (falling time)
+    int space_timer = 0;
+
 public:
     TransformComponent *transform;
     SpriteComponent *sprite;
+
+    // is jump active
+    bool jump_active = false;
 
     void init() override
     {
@@ -32,9 +37,12 @@ public:
             switch (Game::event.key.keysym.sym)
             {
             case SDLK_SPACE:
-                transform->velocity.y = -2;
-                if (sprite->animated)
-                    sprite->play_animation("jump");
+                if (space_timer == 0)
+                {
+                    jump_active = true;
+                    if (sprite->animated)
+                        sprite->play_animation("jump");
+                }
                 break;
             case SDLK_s: // duck and cover !
                 // transform->velocity.y = 1;
@@ -86,5 +94,7 @@ public:
                 break;
             }
         }
+
+        space_timer++;
     }
 };

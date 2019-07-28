@@ -95,6 +95,13 @@ public:
             }
         }
 
-        space_timer++;
+        if (jump_active)
+            space_timer++;
+
+        if (space_timer == 28)
+        {
+            space_timer = 0;
+            jump_active = false;
+        }
     }
 };

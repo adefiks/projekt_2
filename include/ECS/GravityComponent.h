@@ -9,18 +9,17 @@ private:
     /* data */
 public:
     TransformComponent *transform;
-    bool jump_active;
+    KeyboardComponent *keyboard;
 
     void init() override
     {
         transform = &entity->getComponent<TransformComponent>();
+        keyboard = &entity->getComponent<KeyboardComponent>();
     }
 
     void update() override
     {
-        jump_active = &entity->getComponent<KeyboardComponent>().jump_active;
-
-        if (jump_active)
+        if (keyboard->jump_active)
         {
             transform->velocity.y = -2;
         }

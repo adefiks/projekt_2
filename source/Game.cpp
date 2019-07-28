@@ -74,8 +74,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     player.addComponent<SpriteComponent>("assets/player.png");
 
     player.addComponent<ColliderComponent>("player");
-    player.addComponent<GravityComponent>();
     player.addComponent<KeyboardComponent>();
+    player.addComponent<GravityComponent>();
     player.addGroup(groupPlayer);
 }
 

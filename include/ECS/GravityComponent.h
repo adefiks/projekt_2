@@ -21,7 +21,7 @@ public:
     {
         if (keyboard->jump_active)
         {
-            transform->velocity.y = -2;
+            transform->velocity.y = -3;
         }
         else
         {

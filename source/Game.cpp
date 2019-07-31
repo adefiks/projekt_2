@@ -106,6 +106,10 @@ void Game::update()
     // player position in this moment for bactracing player
     Vector2D player_position = player.getComponent<TransformComponent>().position;
 
+    // updating and refreshing components
+    manager.refresh();
+    manager.update();
+
     for (auto cc : colliders)
     {
         SDL_Rect c_collider = cc->getComponent<ColliderComponent>().collider;
@@ -117,9 +121,6 @@ void Game::update()
             }
         }
     }
-
-    manager.refresh();
-    manager.update();
 
     camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
     //camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);

@@ -24,6 +24,9 @@ public:
     // is jump active
     bool jump_active = false;
 
+    // jumping reloading (when touching ground)
+    bool jump_reload = true;
+
     void init() override
     {
         transform = &entity->getComponent<TransformComponent>();
@@ -37,9 +40,10 @@ public:
             switch (Game::event.key.keysym.sym)
             {
             case SDLK_SPACE:
-                if (space_timer == 0)
+                if (jump_reload)
                 {
                     jump_active = true;
+                    jump_reload = false;
                     if (sprite->animated)
                         sprite->play_animation("jump");
                 }

@@ -117,7 +117,7 @@ void Game::update()
         {
             if (!player.getComponent<KeyboardComponent>().jump_active)
             {
-                Collision::Collision_action(player.getComponent<TransformComponent>(), player_position, cc->getComponent<ColliderComponent>().tag);
+                Collision::Collision_action(player.getComponent<TransformComponent>(), player.getComponent<KeyboardComponent>(), player_position, cc->getComponent<ColliderComponent>().tag);
             }
         }
     }

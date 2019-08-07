@@ -5,6 +5,7 @@
 #include "Components.h"
 #include "Vector2D.h"
 #include "Collision.h"
+#include "Timer.h"
 
 Game_Map *game_map;
 
@@ -65,18 +66,22 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    game_map = new Game_Map("assets/tilesheet_complete.png", 1, 32);
-    game_map->LoadMap("assets/mapa.map", (4096 / 32), (Game::resolution_height / 32));
+    {
+        Timer TimeofThisSection("adding assets");
 
-    cout << "licznik tiles: " << game_map->licznik_tiles << endl;
+        game_map = new Game_Map("assets/tilesheet_complete.png", 1, 32);
+        game_map->LoadMap("assets/mapa.map", (4096 / 32), (Game::resolution_height / 32));
 
-    player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 1);
-    player.addComponent<SpriteComponent>("assets/player.png");
+        cout << "licznik tiles: " << game_map->licznik_tiles << endl;
 
-    player.addComponent<ColliderComponent>("player");
-    player.addComponent<KeyboardComponent>();
-    player.addComponent<GravityComponent>();
-    player.addGroup(groupPlayer);
+        player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 1);
+        player.addComponent<SpriteComponent>("assets/player.png");
+
+        player.addComponent<ColliderComponent>("player");
+        player.addComponent<KeyboardComponent>();
+        player.addComponent<GravityComponent>();
+        player.addGroup(groupPlayer);
+    }
 }
 
 auto &tiles(manager.getGroup(Game::groupMap));

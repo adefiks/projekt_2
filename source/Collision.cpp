@@ -24,24 +24,27 @@ bool Collision::AABB(const ColliderComponent &object1, const ColliderComponent &
     return false;
 }
 
-void Collision::Collision_action(TransformComponent &player, KeyboardComponent &keyboard, const Vector2D old_player_position, string collider_tag)
+void Collision::Collision_action(TransformComponent &player, KeyboardComponent &keyboard, const Vector2D old_player_position, ColliderComponent &collider_object)
 {
-    Vector2D vec_collision(1, -1);
-    if (collider_tag == "ground")
+    //Vector2D vec_collision(1, -1);
+    if (collider_object.tag == "ground")
     {
+        if (collider_object.collider.y > player.position.y)
+        {
+        }
+
         player.velocity.y = 0;
         keyboard.jump_reload = true;
-        // player.position = old_player_position;
     }
-    else if (collider_tag == "grass")
+    else if (collider_object.tag == "grass")
     {
         player.speed = 3;
     }
-    else if (collider_tag == "dirt")
+    else if (collider_object.tag == "dirt")
     {
         player.speed = 1;
     }
-    else if (collider_tag == "stone")
+    else if (collider_object.tag == "stone")
     {
         player.position = old_player_position;
     }

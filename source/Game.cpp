@@ -120,17 +120,17 @@ void Game::update()
         SDL_Rect c_collider = cc->getComponent<ColliderComponent>().collider;
         if (Collision::AABB(c_collider, player_collider))
         {
-            if (!player.getComponent<KeyboardComponent>().jump_active)
-            {
-                Collision::Collision_action(player.getComponent<TransformComponent>(), player.getComponent<KeyboardComponent>(), player_position, cc->getComponent<ColliderComponent>());
-            }
+            // if (!player.getComponent<KeyboardComponent>().jump_active)
+            // {
+            Collision::Collision_action(player.getComponent<TransformComponent>(), player.getComponent<KeyboardComponent>(), player_position, cc->getComponent<ColliderComponent>());
+            // }
         }
     }
 
     camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
     //camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);
 
-    cout << " player velocity y: " << player.getComponent<TransformComponent>().velocity.y << endl;
+    //cout << " player velocity y: " << player.getComponent<TransformComponent>().velocity.y << endl;
 
     if (camera.x < 0)
         camera.x = 0;

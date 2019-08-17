@@ -99,10 +99,13 @@ public:
             }
         }
 
+        // if (jump_reload)
+        //     jump_active = false;
+
         if (jump_active)
             space_timer++;
 
-        if (space_timer == 28)
+        if (space_timer >= 28)
         {
             space_timer = 0;
             jump_active = false;

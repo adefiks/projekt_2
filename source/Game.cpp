@@ -76,10 +76,10 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
         player.addComponent<TransformComponent>((Game::resolution_width / 2), (Game::resolution_height / 2), 64, 64, 1);
         player.addComponent<SpriteComponent>("assets/player.png");
-
-        player.addComponent<ColliderComponent>("player");
         player.addComponent<KeyboardComponent>();
         player.addComponent<GravityComponent>();
+        player.addComponent<ColliderComponent>("player");
+
         player.addGroup(groupPlayer);
     }
 }
@@ -105,6 +105,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
+
     // player collider for detection of collisions
     SDL_Rect player_collider = player.getComponent<ColliderComponent>().collider;
 
@@ -113,7 +114,12 @@ void Game::update()
 
     // updating and refreshing components
     manager.refresh();
-    manager.update();
+
+    player.getComponent<KeyboardComponent>().update_first();
+    player.getComponent<GravityComponent>().update_first();
+
+    player_collider.x += player.getComponent<TransformComponent>().velocity.x * player.getComponent<TransformComponent>().speed;
+    player_collider.y += player.getComponent<TransformComponent>().velocity.y * player.getComponent<TransformComponent>().speed;
 
     for (auto cc : colliders)
     {
@@ -125,6 +131,18 @@ void Game::update()
             Collision::Collision_action(player.getComponent<TransformComponent>(), player.getComponent<KeyboardComponent>(), player_position, cc->getComponent<ColliderComponent>());
             // }
         }
+    }
+
+    manager.update();
+
+    // player.getComponent<TransformComponent>().update_component_last();
+
+    static int counter = 0;
+    counter++;
+    if (counter == 28)
+    {
+        cout << " jump active: " << player.getComponent<KeyboardComponent>().jump_active << endl;
+        counter = 0;
     }
 
     camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
@@ -147,7 +165,6 @@ void Game::render()
 {
     SDL_RenderClear(renderer);
     // stuff to render
-    //cout << " camera.x " << camera.x << endl;
 
     for (auto &t : tiles)
     {

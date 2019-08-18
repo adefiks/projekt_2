@@ -33,8 +33,12 @@ void Collision::Collision_action(TransformComponent &player, KeyboardComponent &
         {
         }
 
+        // player.position.y -= 1;
         player.velocity.y = 0;
         keyboard.jump_reload = true;
+        keyboard.jump_active = false;
+
+        player.position = old_player_position;
     }
     else if (collider_object.tag == "grass")
     {

@@ -64,4 +64,10 @@ public:
         position.x += velocity.x * speed;
         position.y += velocity.y * speed;
     }
+
+    void update_component_last()
+    {
+        // position.x += velocity.x * speed;
+        // position.y += velocity.y * speed;
+    }
 };

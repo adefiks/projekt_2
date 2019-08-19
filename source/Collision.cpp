@@ -29,12 +29,13 @@ void Collision::Collision_action(TransformComponent &player, KeyboardComponent &
     //Vector2D vec_collision(1, -1);
     if (collider_object.tag == "ground")
     {
-        if (collider_object.collider.y > player.position.y)
+        if (collider_object.collider.y < player.position.y)
         {
+            player.velocity.x = 0;
         }
 
-        // player.position.y -= 1;
         player.velocity.y = 0;
+
         keyboard.jump_reload = true;
         keyboard.jump_active = false;
 

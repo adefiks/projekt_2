@@ -29,7 +29,7 @@ void Collision::Collision_action(TransformComponent &player, KeyboardComponent &
     //Vector2D vec_collision(1, -1);
     if (collider_object.tag == "ground")
     {
-        if (collider_object.collider.y < player.position.y)
+        if (collider_object.collider.y < player.position.y + player.height)
         {
             player.velocity.x = 0;
         }

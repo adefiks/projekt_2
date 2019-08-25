@@ -126,29 +126,24 @@ void Game::update()
         SDL_Rect c_collider = cc->getComponent<ColliderComponent>().collider;
         if (Collision::AABB(c_collider, player_collider))
         {
-            // if (!player.getComponent<KeyboardComponent>().jump_active)
-            // {
             Collision::Collision_action(player.getComponent<TransformComponent>(), player.getComponent<KeyboardComponent>(), player_position, cc->getComponent<ColliderComponent>());
-            // }
         }
     }
 
     manager.update();
 
-    // player.getComponent<TransformComponent>().update_component_last();
+    // player.getComponent<KeyboardComponent>().jump_reload = false;
 
     static int counter = 0;
     counter++;
     if (counter == 28)
     {
-        cout << " jump active: " << player.getComponent<KeyboardComponent>().jump_active << endl;
+        cout << " jump active: " << player.getComponent<KeyboardComponent>().jump_reload << endl;
         counter = 0;
     }
 
     camera.x = player.getComponent<TransformComponent>().position.x - (Game::resolution_width / 2);
     //camera.y = player.getComponent<TransformComponent>().position.y - (Game::resolution_height / 2);
-
-    //cout << " player velocity y: " << player.getComponent<TransformComponent>().velocity.y << endl;
 
     if (camera.x < 0)
         camera.x = 0;

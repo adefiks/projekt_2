@@ -26,7 +26,6 @@ bool Collision::AABB(const ColliderComponent &object1, const ColliderComponent &
 
 void Collision::Collision_action(TransformComponent &player, KeyboardComponent &keyboard, const Vector2D old_player_position, ColliderComponent &collider_object)
 {
-    //Vector2D vec_collision(1, -1);
     if (collider_object.tag == "ground")
     {
         if (collider_object.collider.y < player.position.y + player.height)

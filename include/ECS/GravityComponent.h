@@ -26,7 +26,7 @@ public:
         else
         {
             keyboard->jump_reload = false;
-            transform->velocity.y = 1;
+            transform->velocity.y = 2;
         }
     }
 

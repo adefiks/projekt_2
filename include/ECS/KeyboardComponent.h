@@ -69,9 +69,13 @@ public:
                 break;
             }
         }
-
-        if (Game::event.type == SDL_KEYUP)
+        else if (Game::event.type == SDL_KEYUP)
         {
+
+            // }
+
+            // if (Game::event.type == SDL_KEYUP)
+            // {
             switch (Game::event.key.keysym.sym)
             {
             case SDLK_w:
@@ -85,12 +89,18 @@ public:
                 //     sprite->play_animation("Idle");
                 break;
             case SDLK_a:
-                transform->velocity.x = 0;
+                if (transform->velocity.x < 0)
+                {
+                    transform->velocity.x = 0;
+                }
                 if (sprite->animated)
                     sprite->play_animation("Idle");
                 break;
             case SDLK_d:
-                transform->velocity.x = 0;
+                if (transform->velocity.x > 0)
+                {
+                    transform->velocity.x = 0;
+                }
                 if (sprite->animated)
                     sprite->play_animation("Idle");
                 break;
